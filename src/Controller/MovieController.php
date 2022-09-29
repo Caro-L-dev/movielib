@@ -13,6 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/movie', name: 'movie_')]
 class MovieController extends AbstractController
 {
+    public function __construct(private MovieRepository $movieRepository)
+    {
+    }
+
     #[Route('/list', name: 'list')]
     public function list(MovieRepository $movieRepository): Response
     {
@@ -33,8 +37,8 @@ class MovieController extends AbstractController
             $form->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $movieRepository->add($movie, true);
-                $this->addFlash('success', 'Compte créé');
+                $movieRepository->save($movie, true);
+                $this->addFlash('success', 'Film ajouté');
                 return $this->redirectToRoute('movie_create');
         }
 
