@@ -6,6 +6,15 @@
 
 {% block body %}
 <section>
-    <h1>Créer une personne</h1>
+        <h1>Créer une personne</h1>
+
+    <div class="form-box">
+        {{ form_start(form) }}
+
+        <div class="form-end">
+            <button class="button">Confirmer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
 </section>
 {% endblock %}
