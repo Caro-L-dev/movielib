@@ -1,0 +1,18 @@
+nav ul{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;   
+}
+
+li{
+    list-style-type: none;
+    margin-right: 2rem;
+}
+
+a{
+    color: inherit;
+}
+
+footer{
+    text-align: center;
+}
