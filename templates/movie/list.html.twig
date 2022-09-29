@@ -6,18 +6,26 @@
 
 
 {% block body %}
-<h1>Liste des films</h1>
+
+    <h1>Liste des films</h1>
+<section>
 
     {% for movie in movies %}
         <article class="movie">
             <div class="movie-poster">
-                <img src="{{ asset('image/movie/' ~ movie.poster) }}" alt="{{ movie.title }}">
-                <span class="movie-type">{{ movie.type }}</span>
+                <img src="{{ asset('images/movies/' ~ movie.poster) }}" alt="{{ movie.title }}">
             </div>
-            <div class="movie-detail">
-                <h2>{{ movie.title }}</h2>
-            </div>
-
+                <div class="inner">
+                    <h2 class="title">{{ movie.title }}</h2>
+                    <p class="subtitle">{{ movie.type }}<p>
+                    <p class="subtitle">{{ movie.realisateur }}<p>
+                    <p class="subtitle">{{ movie.actor }}<p>
+                    {# <time class="subtitle">{{ movie.releasedDate }}<time> #}
+                </div>
         </article>
     {% endfor %}
+</section>
+
+
+
 {% endblock %}
