@@ -6,6 +6,8 @@ use App\Entity\Movie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class MovieType extends AbstractType
 {
@@ -13,20 +15,33 @@ class MovieType extends AbstractType
     {
         $builder
             ->add('title', null, [
-                'label' => 'Nom du film',
+                'label' => 'Titre',
+                'attr' => array(
+                    'placeholder' => 'Nom du film'
+                )
             ])
             ->add('realisateur', null,[
-                'label' => 'Nom du réalisateur',
+                'label' => 'Réalisateur',
+                'attr' => array(
+                    'placeholder' => 'Nom du réalisateur'
+                )
             ])
             ->add('actor', null,[
-                'label' => 'Nom des acteurs',
+                'label' => 'Acteurs',
+                'attr' => array(
+                    'placeholder' => 'Nom des acteurs'
+                )
             ])
-            ->add('poster')
+            ->add('poster', FileType::class, array('label' => 'Image(JPG)'))
             ->add('type', null,[
-                'label' => 'Nom des genres',
+                'label' => 'Genre',
+                'attr' => array(
+                    'placeholder' => 'Nom des genres'
+                )
             ])
-            ->add('releasedDate', null,[
-                'label' => 'Quelle est la date de sortie ?',
+            ->add('releasedDate', BirthdayType::class, [
+                'widget' => 'text',
+                'label' => 'Date de sortie',
             ])
         ;
     }

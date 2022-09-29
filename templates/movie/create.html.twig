@@ -4,6 +4,10 @@
     Créer un film - {{ parent() }}
 {% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
+{% endblock %}
+
 {% block body %}
 <section>
         <h1>Créer un film</h1>
@@ -12,11 +16,16 @@
         {{ form_start(form) }}
 
         {{ form_row(form.title) }}
+        {{ form_row(form.realisateur) }}
+        {{ form_row(form.actor) }}
+        {{ form_row(form.poster) }}
+        {{ form_row(form.type) }}
+        {{ form_row(form.releasedDate) }}
 
         <div class="form-end">
             <button class="button">Confirmer</button>
-        </div>
         {{ form_end(form) }}
+        </div>
     </div>
 </section>
 {% endblock %}
