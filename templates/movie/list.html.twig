@@ -4,6 +4,20 @@
     Liste des films - {{ parent() }}
 {% endblock %}
 
+
 {% block body %}
 <h1>Liste des films</h1>
+
+    {% for movie in movies %}
+        <article class="movie">
+            <div class="movie-poster">
+                <img src="{{ asset('image/movie/' ~ movie.poster) }}" alt="{{ movie.title }}">
+                <span class="movie-type">{{ movie.type }}</span>
+            </div>
+            <div class="movie-detail">
+                <h2>{{ movie.title }}</h2>
+            </div>
+
+        </article>
+    {% endfor %}
 {% endblock %}
