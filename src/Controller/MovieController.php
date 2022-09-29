@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Movie;
+use App\Form\MovieType;
 use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -20,8 +23,24 @@ class MovieController extends AbstractController
     }
 
     #[Route('/create', name: 'create')]
-    public function create(): Response
-    {
-        return $this->render('movie/create.html.twig');
+    public function create(
+        Request $request,
+        MovieRepository $movieRepository
+        ): Response {
+            $movie = new Movie();
+            $form = $this->createForm(MovieType::class, $movie);
+
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $movieRepository->add($movie, true);
+                $this->addFlash('success', 'Compte créé');
+                return $this->redirectToRoute('movie_create');
+        }
+
+
+        return $this->render('movie/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
