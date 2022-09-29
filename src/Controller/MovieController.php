@@ -47,4 +47,12 @@ class MovieController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    public function count(
+        MovieRepository $movieRepository
+        ): Response {
+            $countRepository = $this->getDoctrine()->getRepository(MovieType::class, $movie);
+            $count = $movieRepository->count();
+            
+        }
 }

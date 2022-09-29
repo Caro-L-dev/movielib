@@ -39,6 +39,15 @@ class MovieRepository extends ServiceEntityRepository
         }
     }
 
+    public function count()
+    {
+    $qb = $countRepository->createQueryBuilder('movie');
+    return $qb
+        ->select('count(movie.id)')
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
 //    /**
 //     * @return Movie[] Returns an array of Movie objects
 //     */
